@@ -9,25 +9,28 @@ import { IoCartOutline } from "react-icons/io5";
 
 
 
-const CardPizza = (props) => {
+const CardPizza = ({pizza}) => {
+   //const [listaPizzas, setListaPizzas] = useState({ pizza });
   return (
     <Card style={{ width: "18rem" }}>
-    <Card.Img variant="top" src={props.img} />
-    <Card.Header className="fw-medium fs-5">Pizza {props.name}</Card.Header>
+    <Card.Img variant="top" src={pizza.img} />
+    <Card.Header className="fw-medium fs-5">Pizza {pizza.name}</Card.Header>
+    <CardBody>
+      <p className="fw-light fs-sm">{pizza.desc}</p>
+    </CardBody>
     <ListGroup variant="flush">
       <ListGroup.Item>
-        <p className="text-center fw-light">Ingredientes:</p>
-        <p className="text-center fw-light">
-          <FaPizzaSlice />{" "}
-          {props.ingredients
-            .map((ingredients, index) => ingredients)
-            .join(", ")}
+        <p className=" fw-light">
+          <FaPizzaSlice /> Ingredientes:
         </p>
+        {pizza.ingredients.map((ingredients, index) => {
+          return <li className="fw-light">{ingredients}</li>;
+        })}
       </ListGroup.Item>
       <ListGroup.Item>
         <p className="text-center fw-medium fs-4">
           {" "}
-          Precio: ${format(props.price)}
+          Precio: ${format(pizza.price)}
         </p>
         <div className="d-flex justify-content-between">
           <Button variant="outline-dark" className="bg-light text-dark">
